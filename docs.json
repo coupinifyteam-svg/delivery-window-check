@@ -1,0 +1,11 @@
+{
+  "name": "Coupinify",
+  "description": "Compare estimated checkout delivery dates with the day you need an order in hand.",
+  "theme": {
+    "primaryLight": "#24513B",
+    "primaryDark": "#B8DCC7"
+  },
+  "seo": {
+    "noindex": false
+  }
+}
