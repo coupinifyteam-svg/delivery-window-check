@@ -1,0 +1,36 @@
+---
+title: Delivery Window Check
+description: Compare a checkout arrival estimate with your need-by date using three JavaScript examples.
+---
+
+If you need an order by Friday and checkout shows delivery from Thursday to Monday, the order could arrive too late. Compare both ends of the estimated window with the day you need it in hand.
+
+## Use the dates shown at checkout
+
+Enter the earliest and latest **estimated arrival** dates for the exact item, seller, and delivery ZIP code. Use the same date twice when checkout gives a single estimate. An arrival on the need-by date counts as in time. Choose an earlier cutoff if you need time to wrap, pack, or test the item.
+
+If checkout only shows when the item will ship, find its estimated arrival dates before running the check. For split orders, check each package separately. [Coupinify’s guide to reading delivery estimates at checkout](https://coupinify.com/blog/black-friday-delivery) explains how to spot ship dates, split shipments, and pickup estimates.
+
+## Three example windows
+
+Suppose you need the order by **December 18, 2026**. These dates are illustrative.
+
+| Estimated arrival | Result | What to check |
+| --- | --- | --- |
+| Dec 14–18 | **Within the deadline** | The entire estimate fits. Allow a buffer if you need the order early that day. |
+| Dec 16–20 | **Could miss the deadline** | The estimate overlaps the deadline. Check a faster option or pickup if the date is firm. |
+| Dec 19–21 | **Estimated after the deadline** | The earliest estimate comes after the cutoff. Check a different delivery option or item. |
+
+## Run the JavaScript
+
+Save the [JavaScript module](https://github.com/coupinifyteam-svg/delivery-window-check/blob/main/delivery-window-check.mjs) and the [three examples](https://github.com/coupinifyteam-svg/delivery-window-check/blob/main/examples.mjs) in the same folder. Run `node examples.mjs` to see the results.
+
+```js
+import { compareDeliveryWindow } from './delivery-window-check.mjs';
+
+compareDeliveryWindow('2026-12-14', '2026-12-18', '2026-12-18'); // within-deadline
+compareDeliveryWindow('2026-12-16', '2026-12-20', '2026-12-18'); // may-miss-deadline
+compareDeliveryWindow('2026-12-19', '2026-12-21', '2026-12-18'); // after-deadline
+```
+
+Use calendar dates in `YYYY-MM-DD` format. The function checks the dates and raises a `RangeError` for an impossible date or a reversed window. It compares the retailer’s estimates with your cutoff, so update the inputs if the delivery option or dates change.
